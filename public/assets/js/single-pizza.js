@@ -96,10 +96,11 @@ function printReply(reply) {
 }
 
 function handleNewCommentSubmit(event) {
-  event.preventDefault();
+ event.preventDefault();
 
   const commentBody = $newCommentForm.querySelector('#comment').value;
   const writtenBy = $newCommentForm.querySelector('#written-by').value;
+  
 
   if (!commentBody || !writtenBy) {
     return false;
@@ -108,15 +109,16 @@ function handleNewCommentSubmit(event) {
   const formData = { commentBody, writtenBy };
 
   fetch(`/api/comments/${pizzaId}`, {
-    method: 'POST',
+    method: "POST",
     headers: {
-      Accept: 'application/json',
+      Accept: "application/json",
       'Content-Type': 'application/json'
     },
     body: JSON.stringify(formData)
   })
   .then(response=> {
     if(!response.ok){
+      console.log(response.statusText)
       throw new Error('Something went wrong')
     }
     response.json()
@@ -148,7 +150,7 @@ function handleNewReplySubmit(event) {
 
   const formData = { writtenBy, replyBody };
   fetch(`/api/comments/${pizzaId}/${commentId}`, {
-    method: 'PUT',
+    method: "PUT",
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json'
