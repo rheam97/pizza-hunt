@@ -53,7 +53,7 @@ updatePizza({params, body}, res){
         res.json(dbPizzaData)
     })
     .catch(err=> {
-        res.status(400).json(err)
+        res.json(err)
     })
 },
 //delete pizza
